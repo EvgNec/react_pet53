@@ -6,6 +6,7 @@ import Cast from "./Cast";
 import Reviews from "./Reviews";
 import NotFound from "pages/NotFound";
 
+
 export const App = () => {
   return (
     <Container>
