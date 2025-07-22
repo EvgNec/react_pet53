@@ -20,7 +20,7 @@ function Home() {
   }, []);
   return (
     <div>
-      <h1>Трендові фільми</h1>
+      <h1>Trending today</h1>
       <ul>
         {filmTrends.map(film => (
           <li key={film.id}>

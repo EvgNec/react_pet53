@@ -1,16 +1,30 @@
 import axios from "axios";
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
-
+const APY_KEY='708f0b64505f12eb8c20b5a01361fdf3'
 
   export const getTrend = async () => {
     const response = await axios.get('/trending/all/day', {
       params: {
-        api_key: '708f0b64505f12eb8c20b5a01361fdf3',
+        api_key: APY_KEY,
       },
     });
     return response.data.results;
-  };  
+  }; 
+  
+  export const getMovie = async (id) => {
+    const response = await axios.get(`/movies/${id}`, {
+      params: {
+        api_key: APY_KEY,
+      },
+    });
+    return response.data.results;
+  }; 
+
+
+
+
+
   export const getMaterials = async () => {
     const response = await axios.get('/materials');
     return response.data;
