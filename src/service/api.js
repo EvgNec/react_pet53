@@ -2,11 +2,15 @@ import axios from "axios";
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
-export const getTrend = async values => {
-    const response = await axios.post('trending/all/', values);
-    return response.data;
-  };
-  
+
+  export const getTrend = async () => {
+    const response = await axios.get('/trending/all/day', {
+      params: {
+        api_key: '708f0b64505f12eb8c20b5a01361fdf3',
+      },
+    });
+    return response.data.results;
+  };  
   export const getMaterials = async () => {
     const response = await axios.get('/materials');
     return response.data;
