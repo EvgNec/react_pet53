@@ -24,7 +24,9 @@ function Home() {
       <ul>
         {filmTrends.map(film => (
           <li key={film.id}>
-            <Link to={`/movies/${film.id}`}>{film.title}</Link>
+            <Link to={`${film.id}`}>
+              <p>{film.title || film.name}</p>
+            </Link>
           </li>
         ))}
       </ul>

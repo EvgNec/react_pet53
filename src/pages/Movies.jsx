@@ -1,38 +1,39 @@
 import { useEffect, useState } from 'react';
 import * as API from '../service/api.js';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
+function Movies() {
+  const [movie, setMovie] = useState(null);
+  const { id } = useParams(); // якщо ти хочеш отримати movie_id з URL
+  // const movieId = id || '1285965'; // для тесту можна дефолтний ID
 
-function Movies(id) {
-    const [film, setFilm] = useState([]);
   useEffect(() => {
-    const getMovie = async () => {
+    const fetchMovie = async () => {
       try {
         const data = await API.getMovie(id);
-        console.log('🚀 ~ fetchTrends ~ data:', data);
-        setFilm(data);
+        setMovie(data);
       } catch (error) {
-        console.error('Помилка при завантаженні трендів:', error);
+        console.error('Помилка завантаження фільму:', error);
       }
     };
-    getMovie(83533);
+
+    fetchMovie();
   }, [id]);
 
-  console.log('movies');
   return (
     <div>
-      <h1>Trending today</h1>
-      <ul>
-        {film.map(film => (
-          <li key={film.id}>
-            <Link to={`/movies/${film.id}`}>{film.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <h1>Інформація про фільм</h1>
+      {movie ? (
+        <div>
+          <h2>{movie.title || movie.name}</h2>
+          <p>{movie.overview}</p>
+          <p>Реліз: {movie.release_date}</p>
+        </div>
+      ) : (
+        <p>Завантаження...</p>
+      )}
     </div>
-  )
+  );
 }
 
-export default Movies
-
-
+export default Movies;

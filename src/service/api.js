@@ -12,13 +12,14 @@ const APY_KEY='708f0b64505f12eb8c20b5a01361fdf3'
     return response.data.results;
   }; 
   
-  export const getMovie = async (id) => {
-    const response = await axios.get(`/movies/${id}`, {
+  export const getMovie = async (movie_id) => {
+    console.log("🚀 ~ getMovie ~ id:", movie_id)
+    const response = await axios.get(`/movie/${movie_id}`, {
       params: {
         api_key: APY_KEY,
       },
     });
-    return response.data.results;
+    return response.data;
   }; 
 
 
