@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 // import { Container, Grid, Title } from "./Home.styled.js";
 import * as API from '../service/api.js';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function Home() {
   const [filmTrends, setFilmTrends] = useState([]);
-
+  const { id } = useParams();
+  console.log("🚀 ~ Home ~ id:", id)
   useEffect(() => {
     const fetchTrends = async () => {
       try {
-        const data = await API.getTrend();
+        const data = await API.getTrend(id);
         console.log('🚀 ~ fetchTrends ~ data:', data);
         setFilmTrends(data);
       } catch (error) {
@@ -17,7 +18,7 @@ function Home() {
       }
     };
     fetchTrends();
-  }, []);
+  }, [id]);
   return (
     <div>
       <h1>Trending today</h1>
