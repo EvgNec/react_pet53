@@ -12,12 +12,13 @@ function Movies() {
       try {
         const data = await API.getMovie(id);
         setMovie(data);
+
       } catch (error) {
         console.error('Помилка завантаження фільму:', error);
       }
     };
-
-    fetchMovie();
+    console.log("🚀 ~ fetchMovie ~ data):")
+        fetchMovie();
   }, [id]);
 
   return (
