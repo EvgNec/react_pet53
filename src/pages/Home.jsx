@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 // import { Container, Grid, Title } from "./Home.styled.js";
 import * as API from '../service/api.js';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 
 function Home() {
   const [filmTrends, setFilmTrends] = useState([]);
@@ -31,6 +31,7 @@ function Home() {
           </li>
         ))}
       </ul>
+      <Outlet/>
     </div>
   );
 }
