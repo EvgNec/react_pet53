@@ -8,20 +8,23 @@ function Movies() {
   const [searchText, setSearchText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = async (query) => {
-    if (!query.trim()) return;
-    setSearchText(query);
+  const fetchFilms = async (query) => {
     setIsLoading(true);
-
     try {
       const data = await API.getSearchMovie(query);
-      setFilms(data.results);
+      setFilms(data.results); 
     } catch (error) {
       console.error('Помилка завантаження фільмів:', error);
       setFilms(null);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSearch = (query) => {
+    if (!query.trim()) return;
+    setSearchText(query);
+    fetchFilms(query);
   };
 
   return (
