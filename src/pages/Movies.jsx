@@ -4,43 +4,49 @@ import { Link, Outlet } from 'react-router-dom';
 import SearchForm from 'service/SearchForm/SearchForm.jsx';
 
 function Movies() {
-  // const [movie, setMovie] = useState(null);
   const [films, setFilms] = useState(null);
   const [searchText, setSearchText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = searchText => {
-    setSearchText(searchText);
-    const fetchSearchMovie = async () => {
-      try {
-        const data = await API.getSearchMovie(searchText);
-        setFilms(data);
-      } catch (error) {
-        console.error('Помилка завантаження фільму:', error);
-      }
-    };
-    fetchSearchMovie();
+  const handleSearch = async (query) => {
+    if (!query.trim()) return;
+    setSearchText(query);
+    setIsLoading(true);
+
+    try {
+      const data = await API.getSearchMovie(query);
+      setFilms(data.results);
+    } catch (error) {
+      console.error('Помилка завантаження фільмів:', error);
+      setFilms(null);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
   return (
     <div>
-      <h1>Інформація про фільм</h1>
+      <h1>Пошук фільмів</h1>
       <SearchForm onSubmit={handleSearch} />
-      {films ? (
-        <div>
-          <ul>
-            {films.map(film => (
-              <li key={film.id}>
-                <Link to={`/movies/${film.id}`}>
-                  <p>{film.title || film.name}</p>
-                  <p>{film.overview}</p>
-                  <p>{film.release_date}</p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+
+      {isLoading && <p>Завантаження...</p>}
+
+      {films && films.length > 0 ? (
+        <ul>
+          {films.map(film => (
+            <li key={film.id}>
+              <Link to={`/movies/${film.id}`}>
+                <p>{film.title || film.name}</p>
+                <p>{film.overview}</p>
+                <p>{film.release_date}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
       ) : (
-        <p>Завантаження...</p>
+        !isLoading && searchText && <p>Нічого не знайдено для "{searchText}"</p>
       )}
+
       <Outlet />
     </div>
   );
