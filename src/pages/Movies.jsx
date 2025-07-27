@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as API from '../service/api.js';
 import { Outlet, useParams } from 'react-router-dom';
-import Search from 'components/Search.jsx';
+import SearchBox from 'service/SearchBox.jsx';
 
 function Movies() {
   const [movie, setMovie] = useState(null);
@@ -31,7 +31,7 @@ function Movies() {
   return (
     <div>
       <h1>Інформація про фільм</h1>
-      <Search handleSearch={handleSearch} />
+      <SearchBox handleSearch={handleSearch} />
       {movie ? (
         <div>
           <h2>{movie.title || movie.name}</h2>
