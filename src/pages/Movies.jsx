@@ -40,8 +40,8 @@ function Movies() {
             <li key={film.id}>
               <Link to={`/movies/${film.id}`}>
                 <p>{film.title || film.name}</p>
-                <p>{film.overview}</p>
-                <p>{film.release_date}</p>
+                {/* <p>{film.overview}</p>
+                <p>{film.release_date}</p> */}
               </Link>
             </li>
           ))}
