@@ -23,9 +23,10 @@ const APY_KEY='708f0b64505f12eb8c20b5a01361fdf3'
   }; 
 
   export const getSearchMovie = async (search) => {
-    const response = await axios.get(`/search/movie/${search}`, {
+    const response = await axios.get(`/search/movie`, {
       params: {
         api_key: APY_KEY,
+        query:`${search}`
       },
     });
     return response.data;
