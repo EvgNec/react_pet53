@@ -41,3 +41,9 @@ export const Paragraph = styled.p`
   line-height: 1.5;
   margin: 0.5rem 0;
 `;
+
+export const GenreTitle = styled.h2`
+  margin-top: 1.2rem;
+`;
+
+export const GenreList = styled.p``;
