@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
+display: flex;
+gap: 2rem;
   max-width: 1200px;
   margin: 2rem auto;
   padding: 1.5rem;
@@ -10,8 +12,12 @@ export const Card = styled.div`
 `;
 
 export const Poster = styled.img`
-  width: 40%;
+  width: 400px;
   border-radius: 12px;
+`;
+
+export const InfoSection = styled.div`
+  flex: 1;
 `;
 
 export const Title = styled.h1`

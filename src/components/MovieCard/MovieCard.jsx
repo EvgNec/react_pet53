@@ -1,16 +1,19 @@
-import { Card, Poster, Title, Score, SectionTitle, Paragraph  } from './MovieCard.styled.js'
+import { Card, Poster, Title, Score, SectionTitle, Paragraph, InfoSection  } from './MovieCard.styled.js'
 import React from 'react'
 
 const MovieCard = () => {
   return (
     <Card>
+   
     <Poster src="https://image.tmdb.org/t/p/w400//epFP29rGrLPseuKxpz3mGKr23Do.jpg" alt="Movie Poster" />
+    <InfoSection>
     <Title>Title</Title>
     <Score>User Score</Score>
     <SectionTitle>Overview</SectionTitle>
     <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Paragraph>
     <SectionTitle>Genres:</SectionTitle>
     <Paragraph>Comedy</Paragraph>
+    </InfoSection>
   </Card>
 //     <div>
 //       <img src="https://image.tmdb.org/t/p/w400//epFP29rGrLPseuKxpz3mGKr23Do.jpg" alt="tttt"/>
