@@ -47,7 +47,7 @@ const APY_KEY='708f0b64505f12eb8c20b5a01361fdf3'
         api_key: APY_KEY,
       },
     });
-    return response.data.results;
+    return response.data.cast;
   }; 
 
 
