@@ -32,7 +32,23 @@ const APY_KEY='708f0b64505f12eb8c20b5a01361fdf3'
     return response.data;
   }; 
 
+  export const Reviews = async (movie_id) => {
+    const response = await axios.get(`/movie/${movie_id}/reviews`, {
+      params: {
+        api_key: APY_KEY,
+      },
+    });
+    return response.data.results;
+  }; 
 
+  export const Cast = async (movie_id) => {
+    const response = await axios.get(`/movie/${movie_id}/credits`, {
+      params: {
+        api_key: APY_KEY,
+      },
+    });
+    return response.data.results;
+  }; 
 
 
 
